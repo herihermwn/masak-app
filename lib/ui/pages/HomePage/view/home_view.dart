@@ -40,11 +40,12 @@ class HomeView extends StatelessWidget {
             right: 42.w,
             left: 42.w,
           ),
-          child: Row(
-            children: [
-              Icon(Icons.search),
-              TextFormat("Cari resep"),
-            ],
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+          child: InputField(
+            controller: null,
+            inputType: TextInputType.text,
+            hint: "Cari Resep",
+            prefixIcon: Icon(Icons.search),
           ),
         ),
         Container(
@@ -70,7 +71,7 @@ class HomeView extends StatelessWidget {
                   children: [
                     CachedNetworkImage(
                       imageUrl: i.thumb,
-                      width: 450.w,
+                      width: 430.w,
                       fit: BoxFit.fitHeight,
                       placeholder: (context, child) {
                         return Container(
@@ -133,42 +134,50 @@ class HomeView extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             itemCount: controller.listCategory.length,
             itemBuilder: (context, index) {
-              return Stack(
-                alignment: Alignment(0, 0),
-                children: [
-                  CachedNetworkImage(
-                    imageUrl: controller.listCategory[index].url,
-                    height: 250.h,
-                    width: 720.w,
-                    fit: BoxFit.cover,
-                    placeholder: (context, child) {
-                      return Container(
-                        width: 250.w,
-                        height: 250.w,
-                        child: Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      );
-                    },
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
-                  Align(
+              return GestureDetector(
+                onTap: () {
+                  Get.toNamed(
+                    "/recipesbycategory",
+                    arguments: controller.listCategory[index],
+                  );
+                },
+                child: Hero(
+                  tag: controller.listCategory[index].key,
+                  child: Stack(
                     alignment: Alignment(0, 0),
-                    child: Container(
-                      padding: EdgeInsets.all(12.h),
-                      margin: EdgeInsets.all(12.h),
-                      decoration: BoxDecoration(
-                        color: greenColor,
-                        borderRadius: BorderRadius.circular(8),
+                    children: [
+                      CachedNetworkImage(
+                        imageUrl: controller.listCategory[index].url,
+                        height: 250.h,
+                        width: 720.w,
+                        fit: BoxFit.cover,
+                        placeholder: (context, child) {
+                          return Container(
+                            width: 250.w,
+                            height: 250.w,
+                            child: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        },
+                        errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
-                      child: TextFormat(
-                        controller.listCategory[index].category,
-                        fontColor: whiteColor,
-                        fontWeight: FontWeight.bold,
+                      Container(
+                        padding: EdgeInsets.all(12.h),
+                        margin: EdgeInsets.all(12.h),
+                        decoration: BoxDecoration(
+                          color: greenColor,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: TextFormat(
+                          controller.listCategory[index].category,
+                          fontColor: whiteColor,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  )
-                ],
+                    ],
+                  ),
+                ),
               );
             },
             separatorBuilder: (context, index) => Divider(height: 30.h),

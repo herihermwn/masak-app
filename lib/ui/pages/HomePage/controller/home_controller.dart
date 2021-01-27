@@ -1,12 +1,12 @@
 part of '../../pages.dart';
 
 class HomeController extends GetxController {
-  ApiService _apiService = Get.find<ApiService>();
-  List<Recipes> listRecipes;
-  List<Recipes> randomRecipes;
+  final ApiService _apiService = Get.find<ApiService>();
+  final Random random = new Random();
+
+  List<Recipe> randomRecipes;
   List<CategoryRecipes> listCategory;
   RxBool isDone = false.obs;
-  final Random random = new Random();
 
   HomeController() {
     requestDataAPI();

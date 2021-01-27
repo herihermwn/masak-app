@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 //? -----------------
 Color get whiteColor => Colors.white;
 Color get darkTextColor => Color(0xFF747474);
-Color get inputBackgroundColor => Color(0xFFEEEEEE);
+Color get inputBackgroundColor => Color(0xFFEDEFF5 );
 Color get scaffoldBackgroundColor => Color(0xFFF8F8F8);
 Color get yellowColor => Color(0xFFFFC700);
 Color get purpleColor => Color(0xFF503E9D);

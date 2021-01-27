@@ -17,7 +17,7 @@ class _RestClient implements RestClient {
   String baseUrl;
 
   @override
-  Future<NewRecipesResponse> newRecipes() async {
+  Future<RecipesResponse> newRecipes() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -29,12 +29,12 @@ class _RestClient implements RestClient {
             extra: _extra,
             baseUrl: baseUrl),
         data: _data);
-    final value = NewRecipesResponse.fromJson(_result.data);
+    final value = RecipesResponse.fromJson(_result.data);
     return value;
   }
 
   @override
-  Future<NewRecipesResponse> lengthRecipes(limit) async {
+  Future<RecipesResponse> lengthRecipes(limit) async {
     ArgumentError.checkNotNull(limit, 'limit');
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'limit': limit};
@@ -48,12 +48,31 @@ class _RestClient implements RestClient {
             extra: _extra,
             baseUrl: baseUrl),
         data: _data);
-    final value = NewRecipesResponse.fromJson(_result.data);
+    final value = RecipesResponse.fromJson(_result.data);
     return value;
   }
 
   @override
-  Future<CategoryRecipesResponse> recipesCategory() async {
+  Future<RecipesResponse> recipesByCategory(key) async {
+    ArgumentError.checkNotNull(key, 'key');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.request<Map<String, dynamic>>(
+        '/api/categorys/recipes/$key',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = RecipesResponse.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<CategoryRecipesResponse> categoryRecipes() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

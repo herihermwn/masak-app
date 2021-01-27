@@ -9,8 +9,8 @@ class ApiService {
     _restClient = RestClient(_dio);
   }
 
-  Future<List<Recipes>> getNewRecipes() async {
-    NewRecipesResponse response = await _restClient.newRecipes();
+  Future<List<Recipe>> getNewRecipes() async {
+    RecipesResponse response = await _restClient.newRecipes();
 
     if (response.status) {
       return response.results;
@@ -19,8 +19,18 @@ class ApiService {
     }
   }
 
-  Future<List<Recipes>> getRangeRecipes(int limit) async {
-    NewRecipesResponse response = await _restClient.lengthRecipes(limit);
+  Future<List<Recipe>> getRangeRecipes(int limit) async {
+    RecipesResponse response = await _restClient.lengthRecipes(limit);
+
+    if (response.status) {
+      return response.results;
+    } else {
+      return null;
+    }
+  }
+
+  Future<List<Recipe>> getRecipesByCategory(String key) async {
+    RecipesResponse response = await _restClient.recipesByCategory(key);
 
     if (response.status) {
       return response.results;
@@ -30,7 +40,7 @@ class ApiService {
   }
 
   Future<List<CategoryRecipes>> getCategoryRecipes() async {
-    CategoryRecipesResponse response = await _restClient.recipesCategory();
+    CategoryRecipesResponse response = await _restClient.categoryRecipes();
     
     if (response.status) {
       return response.results;

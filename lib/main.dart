@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         getPages: [
           GetPage(name: "/", page: () => SplashView(), binding: SplashBinding()),
           GetPage(name: "/home", page: () => HomeView(), binding: HomeBinding()),
+          GetPage(name: "/recipesbycategory", page: () => RecipesByCategoryView(), binding: RecipesByCategoryBinding()),
         ],
       ),
     );

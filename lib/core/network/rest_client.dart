@@ -14,12 +14,14 @@ abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
   @GET(ApiConst.newRecipes)
-  Future<NewRecipesResponse> newRecipes();
+  Future<RecipesResponse> newRecipes();
 
   @GET(ApiConst.recipesLength)
-  Future<NewRecipesResponse> lengthRecipes(@Query("limit") int limit);
+  Future<RecipesResponse> lengthRecipes(@Query("limit") int limit);
 
-  @GET(ApiConst.recipesCategory)
-  Future<CategoryRecipesResponse> recipesCategory();
+  @GET(ApiConst.recipesByCategory)
+  Future<RecipesResponse> recipesByCategory(@Path("key") String key);
 
+  @GET(ApiConst.categoryRecipes)
+  Future<CategoryRecipesResponse> categoryRecipes();
 }

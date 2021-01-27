@@ -10,15 +10,19 @@ import 'package:masak_app/services/services.dart';
 import 'package:masak_app/ui/shared/constant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:masak_app/ui/widgets/widgets.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 /// [Binding]
 part 'SplashScreen/binding/splash_binding.dart';
 part 'HomePage/binding/home_binding.dart';
+part 'RecipesByCategoryPage/binding/recipes_by_category_binding.dart';
 
 /// [Controller]
 part 'SplashScreen/controller/splash_controller.dart';
 part 'HomePage/controller/home_controller.dart';
+part 'RecipesByCategoryPage/controller/recipes_by_category_controller.dart';
 
 /// [View]
 part 'SplashScreen/view/splash_view.dart';
 part 'HomePage/view/home_view.dart';
+part 'RecipesByCategoryPage/view/recipes_by_category_view.dart';

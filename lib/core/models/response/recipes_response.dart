@@ -1,23 +1,23 @@
 part of '../models.dart';
 
-class NewRecipesResponse {
+class RecipesResponse {
   String method;
   bool status;
-  List<Recipes> results;
+  List<Recipe> results;
 
-  NewRecipesResponse({String method, bool status, List<Recipes> results}) {
+  RecipesResponse({String method, bool status, List<Recipe> results}) {
     this.method = method;
     this.status = status;
     this.results = results;
   }
 
-  NewRecipesResponse.fromJson(Map<String, dynamic> json) {
+  RecipesResponse.fromJson(Map<String, dynamic> json) {
     method = json['method'];
     status = json['status'];
     if (json['results'] != null) {
-      results = new List<Recipes>();
+      results = new List<Recipe>();
       json['results'].forEach((v) {
-        results.add(new Recipes.fromJson(v));
+        results.add(new Recipe.fromJson(v));
       });
     }
   }
@@ -33,7 +33,7 @@ class NewRecipesResponse {
   }
 }
 
-class Recipes {
+class Recipe {
   String title;
   String thumb;
   String key;
@@ -41,7 +41,7 @@ class Recipes {
   String portion;
   String dificulty;
 
-  Recipes(
+  Recipe(
       {String title,
       String thumb,
       String key,
@@ -56,7 +56,7 @@ class Recipes {
     this.dificulty = dificulty;
   }
 
-  Recipes.fromJson(Map<String, dynamic> json) {
+  Recipe.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     thumb = json['thumb'];
     key = json['key'];
