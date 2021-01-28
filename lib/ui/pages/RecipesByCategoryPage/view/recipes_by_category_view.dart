@@ -25,7 +25,7 @@ class RecipesByCategoryView extends StatelessWidget {
                         ? Center(
                             child: Container(
                               margin: EdgeInsets.only(
-                                top: 80.h,
+                                top: 100.h,
                               ),
                               child: CircularProgressIndicator(),
                             ),
@@ -46,7 +46,7 @@ class RecipesByCategoryView extends StatelessWidget {
                   height: 80.w,
                   margin: EdgeInsets.only(top: 20.h),
                   decoration: BoxDecoration(
-                    color: darkTextColor,
+                    color: darkTextColor.withOpacity(0.8),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
@@ -104,58 +104,69 @@ class RecipesByCategoryView extends StatelessWidget {
   }
 
   Widget recipesList() {
-    return Container(
-      height: 700.h * controller.listRecipes.length,
-      child: ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: controller.listRecipes.length,
-        itemBuilder: (context, index) {
-          var recipe = controller.listRecipes[index];
-          return Container(
-            margin: EdgeInsets.only(left: 32.w, right: 32.w, top: 54.h),
-            padding: EdgeInsets.all(16.h),
-            decoration: BoxDecoration(
-              boxShadow: boxShadowBottom,
-              color: inputBackgroundColor,
-              borderRadius: BorderRadius.circular(8)
-            ),
-            child: Column(
-              children: [
-                CachedNetworkImage(
-                  imageUrl: recipe.thumb,
-                  width: 600.w,
-                  height: 400.h,
-                  fit: BoxFit.cover,
-                  placeholder: (context, child) {
-                    return Container(
-                      width: 250.w,
-                      height: 250.w,
-                      child: Center(
-                        child: CircularProgressIndicator(),
+    return Column(
+      children: [
+        ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: controller.listRecipes.length,
+          itemBuilder: (context, index) {
+            var recipe = controller.listRecipes[index];
+            return GestureDetector(
+              onTap: () {
+                Get.toNamed('/detailrecipe', arguments: recipe);
+              },
+              child: Hero(
+                tag: recipe.key,
+                child: Container(
+                  margin: EdgeInsets.only(left: 32.w, right: 32.w, top: 54.h),
+                  padding: EdgeInsets.all(16.h),
+                  decoration: BoxDecoration(
+                      boxShadow: boxShadowBottom,
+                      color: inputBackgroundColor,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Column(
+                    children: [
+                      CachedNetworkImage(
+                        imageUrl: recipe.thumb,
+                        width: 600.w,
+                        height: 400.h,
+                        fit: BoxFit.cover,
+                        placeholder: (context, child) {
+                          return Container(
+                            width: 250.w,
+                            height: 250.w,
+                            child: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        },
+                        errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
-                    );
-                  },
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                      SizedBox(height: 12.h),
+                      TextFormat(
+                        controller.listRecipes[index].title,
+                        maxLine: 3,
+                        textAlign: TextAlign.center,
+                        fontSize: 34.ssp,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          specBox(MdiIcons.alarm, recipe.times),
+                          specBox(MdiIcons.bowlMix, recipe.portion),
+                          specBox(MdiIcons.chefHat, recipe.dificulty),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(height: 12.h),
-                TextFormat(
-                  controller.listRecipes[index].title,
-                  maxLine: 3,
-                  textAlign: TextAlign.center,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    specBox(MdiIcons.alarm, recipe.times),
-                    specBox(MdiIcons.bowlMix, recipe.portion),
-                    specBox(MdiIcons.chefHat, recipe.dificulty),
-                  ],
-                ),
-              ],
-            ),
-          );
-        },
-      ),
+              ),
+            );
+          },
+        ),
+        SizedBox(height: 40.h)
+      ],
     );
   }
 
@@ -170,7 +181,6 @@ class RecipesByCategoryView extends StatelessWidget {
           spec,
           fontColor: darkTextColor,
           fontSize: 32.ssp,
-          maxLine: 3,
         ),
       ],
     );

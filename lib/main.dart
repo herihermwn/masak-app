@@ -22,21 +22,28 @@ class MyApp extends StatelessWidget {
         initialRoute: "/",
         theme: lightTheme,
         getPages: [
-          GetPage(name: "/", page: () => SplashView(), binding: SplashBinding()),
-          GetPage(name: "/home", page: () => HomeView(), binding: HomeBinding()),
-          GetPage(name: "/recipesbycategory", page: () => RecipesByCategoryView(), binding: RecipesByCategoryBinding()),
+          GetPage(
+              name: "/", page: () => SplashView(), binding: SplashBinding()),
+          GetPage(
+              name: "/home", page: () => HomeView(), binding: HomeBinding()),
+          GetPage(
+              name: "/detailrecipe",
+              page: () => DetailRecipeView(),
+              binding: DetailRecipeBinding()),
+          GetPage(
+              name: "/recipesbycategory",
+              page: () => RecipesByCategoryView(),
+              binding: RecipesByCategoryBinding()),
         ],
       ),
     );
   }
 }
 
-
-class InitBinding extends Bindings{
+class InitBinding extends Bindings {
   @override
   void dependencies() {
     // Inject Class for Global
     Get.put(ApiService());
   }
-
 }

@@ -61,8 +61,13 @@ class Recipe {
     thumb = json['thumb'];
     key = json['key'];
     times = json['times'];
-    portion = json['portion'];
     dificulty = json['dificulty'];
+
+    if (json['portion'] == "") {
+      this.portion = "- Porsi";
+    } else {
+      portion = json['portion'];
+    }
   }
 
   Map<String, dynamic> toJson() {

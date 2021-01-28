@@ -19,6 +19,16 @@ class ApiService {
     }
   }
 
+  Future<DetailRecipe> getDetailRecipe(String key) async {
+    DetailRecipeResponse response = await _restClient.detailRecipe(key);
+
+    if (response.status) {
+      return response.results;
+    } else {
+      return null;
+    }
+  }
+
   Future<List<Recipe>> getRangeRecipes(int limit) async {
     RecipesResponse response = await _restClient.lengthRecipes(limit);
 
@@ -41,7 +51,7 @@ class ApiService {
 
   Future<List<CategoryRecipes>> getCategoryRecipes() async {
     CategoryRecipesResponse response = await _restClient.categoryRecipes();
-    
+
     if (response.status) {
       return response.results;
     } else {
