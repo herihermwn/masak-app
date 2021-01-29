@@ -29,6 +29,7 @@ class TextFormat extends StatelessWidget {
       softWrap: true,
       style: GoogleFonts.poppins(
         color: fontColor ?? null,
+        decoration: TextDecoration.none,
         fontSize: fontSize ?? 38.ssp,
         fontWeight: fontWeight ?? FontWeight.normal,
         fontStyle: fontStyle ?? FontStyle.normal,
