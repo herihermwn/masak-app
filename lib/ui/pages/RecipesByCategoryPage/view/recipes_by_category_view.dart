@@ -106,14 +106,7 @@ class RecipesByCategoryView extends StatelessWidget {
   Widget recipesList() {
     return Column(
       children: [
-        ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: controller.listRecipes.length,
-          itemBuilder: (context, index) {
-            return recipeItem(controller.listRecipes[index]);
-          },
-        ),
+        RecipeList(controller.listRecipes),
         SizedBox(height: 40.h)
       ],
     );

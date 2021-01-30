@@ -103,14 +103,7 @@ class SearchRecipesView extends StatelessWidget {
               fontSize: 36.ssp,
             ),
           ),
-          ListView.builder(
-            itemCount: controller.newRecipes.length,
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return recipeItem(controller.newRecipes[index]);
-            },
-          ),
+          RecipeList(controller.newRecipes),
         ],
       ),
     );
@@ -130,14 +123,7 @@ class SearchRecipesView extends StatelessWidget {
               fontSize: 36.ssp,
             ),
           ),
-          ListView.builder(
-            itemCount: controller.searchRecipes.length,
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return recipeItem(controller.searchRecipes[index]);
-            },
-          ),
+          RecipeList(controller.searchRecipes),
         ],
       ),
     );

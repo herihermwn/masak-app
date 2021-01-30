@@ -21,16 +21,23 @@ class DetailRecipeView extends StatelessWidget {
                 header(),
                 Obx(
                   () {
-                    return controller.isDone.isfalse
-                        ? Center(
-                            child: Container(
-                              margin: EdgeInsets.only(
-                                top: 100.h,
+                    return AnimatedSwitcher(
+                      duration: Duration(milliseconds: 500),
+                      transitionBuilder: (child, animation) => ScaleTransition(
+                        scale: animation,
+                        child: child,
+                      ),
+                      child: controller.isDone.isfalse
+                          ? Center(
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                  top: 100.h,
+                                ),
+                                child: CircularProgressIndicator(),
                               ),
-                              child: CircularProgressIndicator(),
-                            ),
-                          )
-                        : detailRecipe();
+                            )
+                          : detailRecipe(),
+                    );
                   },
                 ),
               ],
