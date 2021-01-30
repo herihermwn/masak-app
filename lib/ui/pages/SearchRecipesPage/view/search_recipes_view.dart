@@ -41,7 +41,7 @@ class SearchRecipesView extends StatelessWidget {
             ),
           ),
           Container(
-            width: 0.5.sh,
+            width: 0.48.sh,
             margin: EdgeInsets.symmetric(vertical: 30.h),
             child: TextField(
               autofocus: true,
@@ -78,11 +78,13 @@ class SearchRecipesView extends StatelessWidget {
       () {
         return controller.getLatestRecipesDone.isfalse
             ? loadingWidget()
-            : controller.doSearchDone.isfalse
+            : controller.doSearch.isfalse
                 ? newRecipes()
                 : controller.searchRecipesDone.isfalse
                     ? loadingWidget()
-                    : resultSearchRecipes();
+                    : controller.failedRequest.isfalse
+                        ? resultSearchRecipes()
+                        : retryWidget();
       },
     );
   }
@@ -129,14 +131,57 @@ class SearchRecipesView extends StatelessWidget {
             ),
           ),
           ListView.builder(
-            itemCount: controller.newRecipes.length,
+            itemCount: controller.searchRecipes.length,
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              return recipeItem(controller.newRecipes[index]);
+              return recipeItem(controller.searchRecipes[index]);
             },
           ),
         ],
+      ),
+    );
+  }
+
+  Widget retryWidget() {
+    return Center(
+      child: Container(
+        width: 0.4.sh,
+        padding: EdgeInsets.symmetric(vertical: 40.h),
+        margin: EdgeInsets.only(top: 100.h),
+        decoration: BoxDecoration(
+          color: inputBackgroundColor,
+          boxShadow: boxShadowBottom,
+        ),
+        child: Column(
+          children: [
+            Icon(
+              Icons.error,
+              size: 100.w,
+              color: Colors.red,
+            ),
+            TextFormat(
+              "Mohon maaf, terjadi kesalahan permintaan",
+              maxLine: 4,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 40.h),
+            RaisedButton(
+              onPressed: controller.retrySearch,
+              color: greenColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(16.h),
+                child: TextFormat(
+                  "Coba Lagi",
+                  fontColor: whiteColor,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

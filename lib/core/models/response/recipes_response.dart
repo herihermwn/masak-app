@@ -63,11 +63,34 @@ class Recipe {
     times = json['times'];
     dificulty = json['dificulty'];
 
-    if (json['portion'] == "") {
-      this.portion = "- Porsi";
+    if (json['portion'] == null) {
+      if (json['serving'] != null) {
+        this.portion = json['serving'];
+      } else if (json['serving'] == "") {
+        this.portion = "- Porsi";
+      }
     } else {
-      portion = json['portion'];
+      if (json['portion'] == "") {
+        this.portion = "- Porsi";
+      } else {
+        this.portion = json['portion'];
+      }
     }
+
+    if (json['dificulty'] == null) {
+      if (json['difficulty'] != null) {
+        this.dificulty = json['difficulty'];
+      } else if (json['difficulty'] == "") {
+        this.dificulty = "-";
+      }
+    } else {
+      if (json['dificulty'] == "") {
+        this.dificulty = "-";
+      } else {
+        this.dificulty = json['dificulty'];
+      }
+    }
+
   }
 
   Map<String, dynamic> toJson() {
