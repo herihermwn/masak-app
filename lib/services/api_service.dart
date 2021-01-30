@@ -19,6 +19,16 @@ class ApiService {
     }
   }
 
+  Future<List<Recipe>> getSearchRecipes(String query) async {
+    RecipesResponse response = await _restClient.searchRecipes(query);
+
+    if (response.status) {
+      return response.results;
+    } else {
+      return null;
+    }
+  }
+
   Future<DetailRecipe> getDetailRecipe(String key) async {
     DetailRecipeResponse response = await _restClient.detailRecipe(key);
 

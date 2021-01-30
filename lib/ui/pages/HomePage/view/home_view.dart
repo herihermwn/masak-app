@@ -33,19 +33,36 @@ class HomeView extends StatelessWidget {
   Widget header() {
     return Column(
       children: [
-        Container(
-          margin: EdgeInsets.only(
-            top: 46.h,
-            bottom: 12.h,
-            right: 42.w,
-            left: 42.w,
-          ),
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
-          child: InputField(
-            controller: null,
-            inputType: TextInputType.text,
-            hint: "Cari Resep",
-            prefixIcon: Icon(Icons.search),
+        GestureDetector(
+          onTap: () {
+            Get.toNamed('/searchrecipes');
+          },
+          child: Container(
+            margin: EdgeInsets.only(
+              top: 60.h,
+              bottom: 12.h,
+              right: 42.w,
+              left: 42.w,
+            ),
+            padding: EdgeInsets.symmetric(
+              vertical: 16.h,
+              horizontal: 20.w,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: greenColor),
+              color: inputBackgroundColor,
+            ),
+            child: Row(
+              children: [
+                Hero(tag: "SearchBar", child: Icon(Icons.search)),
+                SizedBox(width: 20.w),
+                TextFormat(
+                  "Cari Resep",
+                  fontSize: 34.ssp,
+                ),
+              ],
+            ),
           ),
         ),
         Container(

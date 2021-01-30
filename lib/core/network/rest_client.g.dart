@@ -71,6 +71,24 @@ class _RestClient implements RestClient {
   }
 
   @override
+  Future<RecipesResponse> searchRecipes(query) async {
+    ArgumentError.checkNotNull(query, 'query');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'q': query};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.request<Map<String, dynamic>>('/api/search/',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = RecipesResponse.fromJson(_result.data);
+    return value;
+  }
+
+  @override
   Future<RecipesResponse> recipesByCategory(key) async {
     ArgumentError.checkNotNull(key, 'key');
     const _extra = <String, dynamic>{};

@@ -17,15 +17,18 @@ part 'SplashScreen/binding/splash_binding.dart';
 part 'HomePage/binding/home_binding.dart';
 part 'RecipesByCategoryPage/binding/recipes_by_category_binding.dart';
 part 'DetailRecipePage/binding/detail_recipe_binding.dart';
+part 'SearchRecipesPage/binding/search_recipes_binding.dart';
 
 /// [Controller]
 part 'SplashScreen/controller/splash_controller.dart';
 part 'HomePage/controller/home_controller.dart';
 part 'RecipesByCategoryPage/controller/recipes_by_category_controller.dart';
 part 'DetailRecipePage/controller/detail_recipe_controller.dart';
+part 'SearchRecipesPage/controller/search_recipes_controller.dart';
 
 /// [View]
 part 'SplashScreen/view/splash_view.dart';
 part 'HomePage/view/home_view.dart';
 part 'RecipesByCategoryPage/view/recipes_by_category_view.dart';
 part 'DetailRecipePage/view/detail_recipe_view.dart';
+part 'SearchRecipesPage/view/search_recipes_view.dart';

@@ -22,6 +22,9 @@ abstract class RestClient {
   @GET(ApiConst.recipesLength)
   Future<RecipesResponse> lengthRecipes(@Query("limit") int limit);
 
+  @GET(ApiConst.searchRecipes)
+  Future<RecipesResponse> searchRecipes(@Query("q") String query);
+
   @GET(ApiConst.recipesByCategory)
   Future<RecipesResponse> recipesByCategory(@Path("key") String key);
 
