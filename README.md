@@ -1,16 +1,51 @@
-# masak_app
+# Masak App
 
-A new Flutter project.
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height=
+"80">](https://play.google.com/store/apps/details?id=id.hecolab.masak.app)
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Recipe by Category
+- Search Recipe
+- Detail Recipe
 
-A few resources to get you started if this is your first Flutter project:
+## 📸 Demo Android
+<pre>
+<img src="assets/screenshot/Splash-Page.png" width="200"> <img src="assets/screenshot/Home-Page.png" width="200"> <img src="assets/screenshot/Category-Recipe-Page.png" width="200"> <img src="assets/screenshot/Recipes-By-Category-Page.png" width="200"> <img src="assets/screenshot/Detail-Recipe-Page.png" width="200">
+</pre>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## 📁 Direktori
+    # Root Project
+    .
+    ├── app                    # Setup service locator.
+    |
+    ├── core                   # Logic File/class.
+    │   └── model              # Model class.
+    │   │   └── request        # Model for request http.
+    │   │   └── response       # Model for json response.
+    │   └── network            # Functional to send and request data to http.
+    |
+    ├── service                # Class like shared preference, http request, etc.
+    |
+    └── UI                     # UI File/class.
+        ├── pages              # Page File/class.
+        │   └── binding        # Class for binding controller, service to page.
+        │   └── controller     # Class logic for page.        
+        │   └── view           # Class UI for page.        
+        |
+        ├── shared             # Custom function, extension, etc which can be used repeatedly on each method.
+        └── widgets            # Custom widget which can be used repeatedly.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📁 Git commit format
+* Add
+Use when add new feature
+* Update
+Use when update feature
+* Fix
+Use when fix some bug/error
+* Remove
+Use when remove some feature
+#### Example :
+    Add: Home page
+    Fix: Layout not responsive
+    Remove: Shadow on item list 
